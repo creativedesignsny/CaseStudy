@@ -1,0 +1,176 @@
+		<header>
+			<nav class="navbar fixed-top">
+				<div class="navbar-holder d-flex align-items-center align-middle justify-content-between">
+					<div class="navbar-header">
+						<a href="/" class="navbar-brand" id="nav">
+							<img src="resources/images/design ms logo.png" class="navlogo1 d-none d-md-inline-block">
+							<img src="resources/images/design ms logo.png" class="navlogo2 d-sm-none" >
+						</a>
+						<a href="#" id="toggle-btn" class="menu-btn active">
+							<span></span>
+							<span></span>
+							<span></span>
+						</a>
+					</div>
+					<ul class="nav-menu d-flex flex-md-row align-items-md-center pull-right">
+						<li class="nav-item d-flex align-items-center">
+							<form class="search">
+							  	<div class="search__wrapper">
+							    	<input type="text" name="" placeholder="Search" class="search__field">
+							    	<button type="submit" class="fa fa-search search__icon"></button>
+							  	</div>
+							</form>
+						</li>
+						<li class="nav-item dropdown">
+						<div class="dropdown">
+						  	<a href="#" id="dropdownMenuButton" rel="nofollow"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link">
+								<i class="fa fa-bell animated swing infinite"></i>
+							</a>
+						  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+						  <div class="notification">
+							  	<div class="notifications-header">
+	                                <div class="title">Notifications</div>
+	                                <div class="notifications-overlay"></div>
+	                                <!--  <img src="assets/img/notifications/01.jpg" alt="..." class="img-fluid">-->
+	                            </div>
+                            </div>
+	                            <div class="notifications-body">
+								    <a class="dropdown-item" href="#">Task Due</a>
+								    <div id="tasksDue"></div>
+								    <a class="dropdown-item" href="#">Projects Due</a>
+								    <a class="dropdown-item" href="#">3 New messages</a>
+							    </div>
+						  </div>
+						</div>
+
+						</li>
+						<li class="nav-item">
+						<div class="dropdown">
+							<a href="#" class="profile-pic nav-link" id="dropdownMenuButton" rel="nofollow"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								<i class="fa fa-user profile-pic rounded"></i>
+							</a>
+							<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+								<a class="dropdown-item" href="profile">Profile</a>
+								<a class="dropdown-item" href="logout">Logout</a>
+							</div>
+						</div>	
+							<!--  <ul aria-labelledby="user" class="user-size dropdown-menu" style="display: none;">
+                                <li class="welcome">
+                                    <a href="#" class="edit-profil"><i class="fa fa-gear"></i></a>
+                                    <i class="fa fa-user profile-pic roundedbig"></i>
+                                </li>
+                                <li>
+                                    <a href="pages-profile.html" class="dropdown-item"> 
+                                        Profile
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="app-mail.html" class="dropdown-item"> 
+                                        Messages
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="dropdown-item no-padding-bottom"> 
+                                        Settings
+                                    </a>
+                                </li>
+                                <li class="separator"></li>
+                                <li>
+                                    <a href="pages-faq.html" class="dropdown-item no-padding-top"> 
+                                        Faq
+                                    </a>
+                                </li>
+                                <li><a rel="nofollow" href="pages-login.html" class="dropdown-item logout text-center"><i class="ti-power-off"></i></a></li>
+                            </ul>-->							
+						</li>						
+                        <li>
+
+                        </li>
+					</ul>		
+				</div>
+			</nav>
+		</header>
+		<div class="page-content d-flex align-items-stretch">
+			<div class="default-sidebar">
+				<nav class="side-navbar box-scroll side-scroll d-none d-md-block">
+					<ul class="list-unstyled">
+						<li class="active">
+							<a href="dashboard">
+								<i class="fa fa-columns"></i>
+								<span>Dashboard</span>
+							</a>	
+						</li>
+					</ul>
+					<ul class="list-unstyled">
+						<li class="active">
+							<a href="project">
+								<i class="fa fa-puzzle-piece"></i>
+								<span>Project</span>
+							</a>	
+						</li>
+					</ul>
+					<ul class="list-unstyled">
+						<li class="active">
+							<a href="Task">
+								<i class="fa fa-tasks"></i>
+								<span>Task</span>
+							</a>	
+						</li>
+					</ul>
+					<ul class="list-unstyled">
+						<li class="active">
+							<a href="profile">
+								<i class="fa fa-user profile-pic rounded"></i>
+								<span>Profile</span>
+							</a>	
+						</li>
+					</ul>					
+					<!--  <ul class="list-unstyled">
+						<li class="active">
+							<a href="#">
+								<i class="fa fa-users"></i>
+								<span>Setup Meetings</span>
+							</a>	
+						</li>
+					</ul>-->
+					<ul class="list-unstyled">
+						<li class="active">
+							<a href="project-detail">
+								<i class="fa fa-file-text-o"></i>
+								<span>Project Details</span>
+							</a>	
+						</li>
+						<li class="active">
+							<a href="logout" aria-expanded="false">
+								<i class="fa fa-sign-out"></i>
+								<span>Logout</span>
+							</a>	
+						</li>						
+
+					</ul>																				
+				</nav>
+				</div>
+			</div>
+  	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		//alert("Jquery is Ready");
+		$("#dropdownMenuButton").click(function(){
+			//alert("button is clicked");
+			$.ajax({
+				url: 'get_notify',
+				dataType: "json",
+				success: function (data) {
+					console.log(data);
+				    $("#tasksDue").html('');
+				    var tasksDueContent = '';
+				    for(var i = 0; i < data.length; i++)
+				    {
+				    	tasksDueContent += '<p>' + data[i].taskName + '</p>'; // if Name is property of your Person object
+				    }
+				    $("#tasksDue").append(tasksDueContent);
+				},
+			})
+		})
+	});
+</script>
